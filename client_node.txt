@@ -75,3 +75,38 @@ f= ()=> {return 'foo';} //=> function
 [Function: g]
 > g()
 'goo'
+
+h=(args)=>{return 'Text:'+args;}
+[Function: h]
+> h()
+'Text:undefined'
+> h('John')
+'Text:John'
+> h=(args)=>{return 'Text:'+args+'aa';}
+[Function: h]
+> h('John')
+'Text:Johnaa'
+> h=(args)=>{return 'Text:'+args+' '+args;}
+[Function: h]
+> h('John')
+'Text:John John'
+> h= function hoo(agrs) {return 'Text:'+agrs;}
+[Function: hoo]
+> h('John')
+'Text:John'
+
+ myvar.f= ()=> {return 'foo';}
+[Function]
+> myvar
+{ x: 1, y: 2, str: 'String', f: [Function] }
+> myvar.f()
+'foo'
+
+for (var index in myvar.g)
+... console.log(myvar.g[index])
+1
+2
+3
+goo
+undefined
+>
