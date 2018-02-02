@@ -35,3 +35,43 @@ true
 true
 > ''=='0'
 false
+
+var c = {x:1,y:2};
+undefined
+> var d = {x:1,y:2};
+undefined
+> (c==d)
+false
+
+> var e = "text";
+undefined
+> var f = "te"+"xt";
+undefined
+> e==f
+true
+
+ f= function foo() {return 'foo';}
+[Function: foo]
+> f
+[Function: foo]
+> f()
+'foo'
+
+ f= function () {return 'foo';}
+[Function: f]
+> f()
+'foo'
+
+f= ()=> {return 'foo';} //=> function
+[Function: f]
+> f()
+'foo'
+
+ g= function goo() {return 'goo';}
+[Function: goo]
+> g()
+'goo'
+> g= ()=> {return 'goo';}
+[Function: g]
+> g()
+'goo'
