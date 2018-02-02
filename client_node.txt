@@ -1,0 +1,37 @@
+console.log("hello world") || '' //กำหนดค่า
+function foo() {var x=8; console.log("foo"+x)}
+
+objBob={name:"Bob",grade:"4"}
+objBob.name //Bob
+objBob.Fullname="John"
+objBob // objBob={name:"Bob",grade:"4",Fullname:"John"}
+
+myArray=[1,2,3,"Foo","Bar"]
+objBob.myArray=myArray
+[ 1, 2, 3, 'Foo', 'Bar' ]
+> objBob
+{ name: 'Bob',
+  grade: '4',
+  Fullname: 'John',
+  myArray: [ 1, 2, 3, 'Foo', 'Bar' ] }
+objBob.foo= function foo() {console.log('Foo')}
+objBob.foo()
+Foo
+
+objBob.foo.description="this is foo function"
+'this is foo function'
+> objBob.foo.description
+'this is foo function'
+> objBob
+{ name: 'Bob',
+  grade: '4',
+  Fullname: 'John',
+  myArray: [ 1, 2, 3, 'Foo', 'Bar' ],
+  foo: { [Function: foo] description: 'this is foo function' } }
+  
+>(1==1)
+true
+> ''==0
+true
+> ''=='0'
+false
