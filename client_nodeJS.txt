@@ -1,0 +1,99 @@
+var util;
+util = require("util");
+setTimeout(function(){
+	console.log("world");
+}, 3000);
+console.log("hello"); 
+
+event loop 
+วิเคราะห์ event ถ้างานใช้เวลาน้อย ทำเลย ถ้างานใหญ่ส่งให้คนอื่นทำแทน(แตกเทรด) thread-pool
+ทำให้ main thread ว่าง ทำให้ตอยสนอง client เร็ว
+กระจายการทำงาน ทำให้ทำงานได้เร็ว
+Javascript V8 
+
+Traditional I/O
+var result = db.query(“select x from table_Y”);
+doSomethingWith(result); //wait for result! 
+doSomethingWithOutResult(); //execution is blocked!
+//ทำตามบรรทัด ต้องรอให้บรรทัดบนเสร็จก่อนถึงทำต่อไปได้ ช้า
+
+Non-traditional, Non-blocking I/O
+db.query(“select x from table_Y”,function (result){ 
+	doSomethingWith(result); //wait for result!
+});
+doSomethingWithOutResult(); //executes without any delay!
+//เมื่อผลมาถึงค่อยทำ และสามารถทำสิ่งที่ไม่เกี่ยวข้องไปด้วยได้
+
+var foo = function() {
+	console.log("foo");
+}
+setTimeout(foo,2000);
+console.log("Hello");
+
+setTimeout(() => console.log('foo'), 2000);
+console.log('Hello');
+
+var foo = function(arg1,arg2) {
+	console.log("foo:" + arg1 + arg2);
+}
+setTimeout(foo,2000,"Bob","Joe");
+
+var foo = (arg1,arg2)=> {
+	console.log("foo:" + arg1 + arg2);
+}
+setTimeout(foo,2000,"Bob","Joe");
+
+var id = setInterval(()=>console.log("foo"),2000); //Interval เป็นการสั่งให้ทำซ้ำ
+setTimeout(()=>clearInterval(id),9000);
+
+Curried function คือฟังก์ชันซ้อนฟังก์ชัน
+
+//=== Non curried function
+function greet(mesg) {console.log(mesg);}
+function greeter(name) {return "Hello" + name;}
+var mesg = greeter('John')
+greet(mesg);
+//==== curried function
+function greeter(name) {
+	var mesg = "Hello" + name;
+	return function  greet() {
+		console.log(mesg)
+	}
+
+}
+var fn = greeter('John');
+fn();
+
+function sumAll() {
+   var total=0;
+   for (var i=0; i< sumAll.arguments.length; i++) 
+   		total+=sumAll.arguments[i];
+   return(total); 
+}
+console.log(sumAll(3,5,3,5,3,2,6));
+
+var sumAll = (... args) => {
+   var total=0;
+   for (var i=0; i< args.length; i++) 
+   		total+=args[i];
+   return(total); 
+}
+console.log(sumAll(3,5,3,5,3,2,6));
+
+***************************************************
+* exports.sa= sumAll = (... args) => {			  *
+*   var total=0;								  *
+*   for (var i=0; i< args.length; i++) 			  *
+*   		total+=args[i];						  *
+*   return(total); 								  *
+* } //Helloworld.js 1 file ใช้สำหรับส่งค่าไปอีกโปรแกรมนึง	  *
+*												  *
+* var myfunction = require('./Helloworld.js');	  *
+* console.log(myfunction.sa(3,5,2)); //exports.js *
+***************************************************
+
+
+
+
+
+
