@@ -92,6 +92,24 @@ console.log(sumAll(3,5,3,5,3,2,6));
 * console.log(myfunction.sa(3,5,2)); //exports.js *
 ***************************************************
 
+เป็น client เชื่อมต่อ server
+var net = require('net');
+var HOST = '172.26.1.205';
+var PORT = 6980;
+var client = new net.Socket();
+client.connect(PORT, HOST, function() {
+	console.log('CONNECTED TO: ' + HOST + ':' + PORT);
+	client.write('I am Por!');
+});
+client.on('data', function(data) {
+	console.log('DATA: ' + data);
+	client.destroy();
+});
+client.on('close', function() {
+	console.log('Connection closed');
+}); 
+
+
 
 
 
